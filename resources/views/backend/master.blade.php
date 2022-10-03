@@ -52,25 +52,7 @@
 <!-- Right bar overlay-->
 <div class="rightbar-overlay"></div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-<script>
-    var type = "success";
-    switch (type) {
-        case 'info':
-            toastr.info(" User Logout Successfully ");
-            break;
-        case 'success':
-            toastr.success(" User Logout Successfully ");
-            break;
-        case 'warning':
-            toastr.warning(" User Logout Successfully ");
-            break;
-        case 'error':
-            toastr.error(" User Logout Successfully ");
-            break;
-    }
-</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
 @yield('bottom-js')
 </body>

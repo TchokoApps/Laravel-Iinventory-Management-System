@@ -22,13 +22,13 @@ class ProductsTableSeeder extends Seeder
 
         $faker = Faker::create();
 
-        foreach (range(1, 50) as $value) {
+        foreach (range(1, 10) as $value) {
             $products[] = [
                 'name' => $faker->city(),
-                'quantity' => $faker->numberBetween(10, 100),
+                'quantity' => $faker->numberBetween(1, 50),
                 'supplier_id' => $faker->numberBetween(1, 5),
                 'category_id' => $faker->numberBetween(1, 10),
-                'unit_id' => $faker->numberBetween(1, 5),
+                'unit_id' => $faker->numberBetween(1, 2),
                 'status' => 1,
                 'created_by' => 1,
                 'updated_by' => 1,

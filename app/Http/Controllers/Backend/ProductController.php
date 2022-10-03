@@ -96,4 +96,23 @@ class ProductController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+    public function getCategoryBySupplierId(Request $request)
+    {
+        $supplier_id = $request->supplier_id;
+        $cateogries = Product::select('category_id')->where('supplier_id', $supplier_id)->groupBy('category_id')->with('category')->get();
+        return response()->json($cateogries);
+    }
+
+    public function getProductByCategoryId(Request $request)
+    {
+        $products = Product::where('category_id', $request->category_id)->get();
+        return response()->json($products);
+    }
+
+    public function getProductById(Request $request)
+    {
+        $product = Product::where('id', $request->product_id)->first();
+        return response()->json($product->quantity);
+    }
 }

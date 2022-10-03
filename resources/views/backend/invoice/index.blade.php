@@ -20,15 +20,7 @@
     <div class="row">
         <div class="col-12">
             <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                <h4 class="mb-sm-0">Products</h4>
-
-                {{--                <div class="page-title-right">--}}
-                {{--                    <ol class="breadcrumb m-0">--}}
-                {{--                        <li class="breadcrumb-item"><a href="javascript: void(0);">Tables</a></li>--}}
-                {{--                        <li class="breadcrumb-item active">Data Tables</li>--}}
-                {{--                    </ol>--}}
-                {{--                </div>--}}
-
+                <h4 class="mb-sm-0">Invoices</h4>
             </div>
         </div>
     </div>
@@ -36,7 +28,7 @@
     <div class="row">
         <div class="col-12">
             <a type="button" class="btn btn-primary btn-rounded waves-effect waves-light" style="float: right"
-               href="{{ route('backend.product.create') }}">Add Product</a><br><br><br>
+               href="{{ route('backend.invoice.create.form') }}">Add Invoice</a><br><br><br>
         </div> <!-- end col -->
     </div>
 
@@ -45,35 +37,30 @@
             <div class="card">
                 <div class="card-body">
 
-                    <h4 class="card-title">All Products</h4>
+                    <h4 class="card-title">All Invoices</h4>
 
-                    <table id="datatable" class="table table-bordered dt-responsive nowrap"
-                           style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                    <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                         <thead>
                         <tr>
                             <th>Index</th>
-                            <th>Name</th>
-                            <th>Supplier Name</th>
-                            <th>Category Name</th>
-                            <th>Unit</th>
-                            <th>Quantity</th>
+                            <th>Invoice No</th>
+                            <th>Date</th>
+                            <th>Description</th>
                             <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($products as $key => $item)
+                        @foreach($invoices as $key => $item)
                             <tr class="odd">
                                 <td> {{ $key+1}} </td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item['supplier']['name']  }}</td>
-                                <td>{{ $item['category']['name']  }}</td>
-                                <td>{{ $item['unit']['name'] }}</td>
-                                <td>{{ $item->quantity }}</td>
-                                <td><a href="{{ route('backend.product.edit', $item->id) }}" class="btn btn-info sm"
+                                <td>{{ $item->invoice_no }}</td>
+                                <td>{{ date('d-m-Y', strtotime($item->date)) }}</td>
+                                <td>{{ $item->description }}</td>
+                                <td><a href="{{ route('backend.category.edit', $item->id) }}" class="btn btn-info sm"
                                        title="Edit Data"> <i
                                             class="fas fa-edit"></i> </a>
 
-                                    <a href="{{ route('backend.product.destroy', $item->id) }}" class="btn btn-danger sm"
+                                    <a href="{{ route('backend.category.destroy', $item->id) }}" class="btn btn-danger sm"
                                        title="Delete Data"
                                        id="delete"> <i class="fas fa-trash-alt"></i> </a></td>
                             </tr>
@@ -119,6 +106,29 @@
     <!-- Datatable init js -->
     <script src="{{asset('backend/assets/js/pages/datatables.init.js')}}"></script>
 
+    {{--    <script src="{{asset('backend/assets/js/app.js')}}"></script>--}}
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script>
+            @if(Session::has('message'))
+        var type = "{{ Session::get('alert-type','info') }}"
+        switch (type) {
+            case 'info':
+                toastr.info(" {{ Session::get('message') }} ");
+                break;
+            case 'success':
+                toastr.success(" {{ Session::get('message') }} ");
+                break;
+            case 'warning':
+                toastr.warning(" {{ Session::get('message') }} ");
+                break;
+            case 'error':
+                toastr.error(" {{ Session::get('message') }} ");
+                break;
+        }
+        @endif
+    </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="{{ asset('backend/assets/js/code.js') }}"></script>
 @endsection

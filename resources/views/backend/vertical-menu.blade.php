@@ -132,10 +132,28 @@
                         <span>Manage Purchase</span>
                     </a>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('backend.purchase.index') }}">All Purchase</a></li>
+                        <li><a href="{{ route('backend.purchase.index') }}">All Purchases</a></li>
                     </ul>
                     <ul class="sub-menu" aria-expanded="false">
                         <li><a href="{{ route('backend.purchase.create.form') }}">Add Purchase</a></li>
+                    </ul>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('backend.purchase.pending.get') }}">Approval Purchase</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i class="ri-mail-send-line"></i>
+                        <span>Manage Invoice</span>
+                    </a>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('backend.invoice.index') }}">All Invoices</a></li>
+                    </ul>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('backend.invoice.create.form') }}">Add Invoices</a></li>
+                    </ul>
+                    <ul class="sub-menu" aria-expanded="false">
+                        <li><a href="{{ route('backend.purchase.pending.get') }}">Approval Invoce</a></li>
                     </ul>
                 </li>
 
