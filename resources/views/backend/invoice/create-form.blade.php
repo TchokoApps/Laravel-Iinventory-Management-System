@@ -1,13 +1,4 @@
 @extends('backend.master')
-@section('header-css')
-    <!-- Bootstrap Css -->
-    <link href="{{asset('backend/assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css')}}">
-    <link href="{{asset('backend/assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css"/>
-    <!-- Icons Css -->
-    <link href="{{asset('backend/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css"/>
-    <!-- App Css-->
-    <link href="{{asset('backend/assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css"/>
-@endsection
 @section('page-content')
 
     <div class="row">
@@ -165,25 +156,6 @@
 
 @section('bottom-js')
 
-    <!-- JAVASCRIPT -->
-    <script src="{{asset('backend/assets/libs/jquery/jquery.min.js')}}"></script>
-    <!-- JAVASCRIPT -->
-    <script src="{{asset('backend/assets/libs/jquery/jquery.min.js')}}"></script>
-    <script src="{{asset('backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('backend/assets/libs/metismenu/metisMenu.min.js')}}"></script>
-    <script src="{{asset('backend/assets/libs/simplebar/simplebar.min.js')}}"></script>
-    <script src="{{asset('backend/assets/libs/node-waves/waves.min.js')}}"></script>
-
-    <script src="{{asset('backend/assets/libs/parsleyjs/parsley.min.js')}}"></script>
-
-    <script src="{{asset('backend/assets/js/pages/form-validation.init.js')}}"></script>
-    <script src="{{asset('backend/assets/js/handlebars.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
-
-    <!-- JAVASCRIPT -->
-    {{--    <script src="{{asset('backend/assets/libs/select2/js/select2.min.js')}}"></script>--}}
-    {{--    <script src="{{asset('backend/assets/js/pages/form-advanced.init.js')}}"></script>--}}
-
     <script id="document-template" type="text/x-handlebars-template">
 
         <tr class="delete_add_more_item" id="delete_add_more_item">
@@ -319,27 +291,6 @@
                 })
             });
         });
-    </script>
-
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script>
-            @if(Session::has('message'))
-        var type = "{{ Session::get('alert-type','info') }}"
-        switch (type) {
-            case 'info':
-                toastr.info(" {{ Session::get('message') }} ");
-                break;
-            case 'success':
-                toastr.success(" {{ Session::get('message') }} ");
-                break;
-            case 'warning':
-                toastr.warning(" {{ Session::get('message') }} ");
-                break;
-            case 'error':
-                toastr.error(" {{ Session::get('message') }} ");
-                break;
-        }
-        @endif
     </script>
 
     <script type="text/javascript">

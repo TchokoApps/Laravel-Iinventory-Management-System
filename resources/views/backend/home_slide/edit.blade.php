@@ -1,12 +1,12 @@
 @extends('backend.master')
-@section('header-css')
-    <!-- Bootstrap Css -->
-    <link href="{{asset('backend/assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css"/>
-    <!-- Icons Css -->
-    <link href="{{asset('backend/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css"/>
-    <!-- App Css-->
-    <link href="{{asset('backend/assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css"/>
-@endsection
+{{--@section('header-css')--}}
+{{--    <!-- Bootstrap Css -->--}}
+{{--    <link href="{{asset('backend/assets/css/bootstrap.min.css')}}" id="bootstrap-style" rel="stylesheet" type="text/css"/>--}}
+{{--    <!-- Icons Css -->--}}
+{{--    <link href="{{asset('backend/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css"/>--}}
+{{--    <!-- App Css-->--}}
+{{--    <link href="{{asset('backend/assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css"/>--}}
+{{--@endsection--}}
 @section('page-content')
 
     <div class="row">
@@ -61,32 +61,32 @@
 
 @endsection
 
-@section('bottom-js')
-    <!-- JAVASCRIPT -->
+{{--@section('bottom-js')--}}
+{{--    <!-- JAVASCRIPT -->--}}
 {{--    <script src="{{asset('backend/assets/libs/jquery/jquery.min.js')}}"></script>--}}
-    <script src="{{asset('backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('backend/assets/libs/metismenu/metisMenu.min.js')}}"></script>
-    <script src="{{asset('backend/assets/libs/simplebar/simplebar.min.js')}}"></script>
-    <script src="{{asset('backend/assets/libs/node-waves/waves.min.js')}}"></script>
+{{--    <script src="{{asset('backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>--}}
+{{--    <script src="{{asset('backend/assets/libs/metismenu/metisMenu.min.js')}}"></script>--}}
+{{--    <script src="{{asset('backend/assets/libs/simplebar/simplebar.min.js')}}"></script>--}}
+{{--    <script src="{{asset('backend/assets/libs/node-waves/waves.min.js')}}"></script>--}}
 
-    <!-- masonry pkgd -->
-    <script src="{{asset('backend/assets/libs/masonry-layout/masonry.pkgd.min.js')}}"></script>
+{{--    <!-- masonry pkgd -->--}}
+{{--    <script src="{{asset('backend/assets/libs/masonry-layout/masonry.pkgd.min.js')}}"></script>--}}
 
-    <!-- bs custom file input plugin -->
-    <script src="{{asset('backend/assets/libs/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
-    <script src="{{asset('backend/assets/js/pages/form-element.init.js')}}"></script>
-    <script src="{{asset('backend/assets/js/app.js')}}"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript">
+{{--    <!-- bs custom file input plugin -->--}}
+{{--    <script src="{{asset('backend/assets/libs/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>--}}
+{{--    <script src="{{asset('backend/assets/js/pages/form-element.init.js')}}"></script>--}}
+{{--    <script src="{{asset('backend/assets/js/app.js')}}"></script>--}}
+{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>--}}
+{{--    <script type="text/javascript">--}}
 
-        $(document).ready(function () {
-            $('#image').change(function (e) {
-                var reader = new FileReader();
-                reader.onload = function (e) {
-                    $('#showImage').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(e.target.files['0']);
-            });
-        });
-    </script>
-@endsection
+{{--        $(document).ready(function () {--}}
+{{--            $('#image').change(function (e) {--}}
+{{--                var reader = new FileReader();--}}
+{{--                reader.onload = function (e) {--}}
+{{--                    $('#showImage').attr('src', e.target.result);--}}
+{{--                }--}}
+{{--                reader.readAsDataURL(e.target.files['0']);--}}
+{{--            });--}}
+{{--        });--}}
+{{--    </script>--}}
+{{--@endsection--}}
