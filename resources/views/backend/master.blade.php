@@ -10,12 +10,12 @@
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{asset('backend/assets/images/favicon.ico')}}">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
-    @yield('header-css')
-    <link href="{{asset('backend/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css')}}" rel="stylesheet" type="text/css"/>
-    <link href="{{asset('backend/assets/libs/datatables.net-select-bs4/css//select.bootstrap4.min.css')}}" rel="stylesheet" type="text/css"/>
 
-    <!-- Responsive datatable examples -->
-    <link href="{{asset('backend/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('backend/assets/libs/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('backend/assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}" rel="stylesheet">
+    <link href="{{asset('backend/assets/libs/spectrum-colorpicker2/spectrum.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('backend/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.css')}}" rel="stylesheet">
+
     <!-- jquery.vectormap css -->
     <link href="{{asset('backend/assets/libs/admin-resources/jquery.vectormap/jquery-jvectormap-1.2.2.css')}}" rel="stylesheet" type="text/css"/>
     <!-- DataTables -->
@@ -28,6 +28,11 @@
     <link href="{{asset('backend/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css"/>
     <!-- App Css-->
     <link href="{{asset('backend/assets/css/app.min.css')}}" id="app-style" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('backend/assets/libs/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="{{asset('backend/assets/libs/datatables.net-select-bs4/css//select.bootstrap4.min.css')}}" rel="stylesheet" type="text/css"/>
+    <!-- Responsive datatable examples -->
+    <link href="{{asset('backend/assets/libs/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" type="text/css"/>
+
 </head>
 
 <body data-topbar="dark">
@@ -79,6 +84,8 @@
 <script src="{{asset('backend/assets/libs/simplebar/simplebar.min.js')}}"></script>
 <script src="{{asset('backend/assets/libs/node-waves/waves.min.js')}}"></script>
 
+
+
 <!-- apexcharts -->
 <script src="{{asset('backend/assets/libs/apexcharts/apexcharts.min.js')}}"></script>
 
@@ -95,6 +102,18 @@
 <script src="{{asset('backend/assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}"></script>
 
 <script src="{{asset('backend/assets/js/pages/dashboard.init.js')}}"></script>
+
+<script src="{{asset('backend/assets/libs/select2/js/select2.min.js')}}"></script>
+<script src="{{asset('backend/assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+<script src="{{asset('backend/assets/libs/spectrum-colorpicker2/spectrum.min.js')}}"></script>
+<script src="{{asset('backend/assets/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js')}}"></script>
+<script src="{{asset('backend/assets/libs/admin-resources/bootstrap-filestyle/bootstrap-filestyle.min.js')}}"></script>
+<script src="{{asset('backend/assets/libs/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script>
+<script src="{{asset('backend/assets/js/pages/form-advanced.init.js')}}"></script>
+
+<script src="{{asset('backend/assets/js/app.js')}}"></script>
+<script src="{{asset('backend/assets/js/handlebars.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js" ></script>
 
 <!-- App js -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
@@ -121,11 +140,10 @@
 
 <!-- masonry pkgd -->
 <script src="{{asset('backend/assets/libs/masonry-layout/masonry.pkgd.min.js')}}"></script>
-
 <!-- bs custom file input plugin -->
 <script src="{{asset('backend/assets/libs/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 <script src="{{asset('backend/assets/js/pages/form-element.init.js')}}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -147,21 +165,153 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script src="{{ asset('backend/assets/js/code.js') }}"></script>
 
-<script src="{{asset('backend/assets/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('backend/assets/libs/metismenu/metisMenu.min.js')}}"></script>
-<script src="{{asset('backend/assets/libs/simplebar/simplebar.min.js')}}"></script>
-<script src="{{asset('backend/assets/libs/node-waves/waves.min.js')}}"></script>
-
-<!-- masonry pkgd -->
-<script src="{{asset('backend/assets/libs/masonry-layout/masonry.pkgd.min.js')}}"></script>
-
 <!-- bs custom file input plugin -->
 <script src="{{asset('backend/assets/js/validate.min.js')}}"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 <script src="{{asset('backend/assets/js/pages/form-validation.init.js')}}"></script>
-
 <script src="{{asset('backend/assets/js/upload.js')}}"></script>
+
+<script id="document-template" type="text/x-handlebars-template">
+
+    <tr class="delete_add_more_item" id="delete_add_more_item">
+        <input type="hidden" name="date[]" value="@{{date}}">
+        <input type="hidden" name="purchase_no[]" value="@{{purchase_no}}">
+        <input type="hidden" name="supplier_id[]" value="@{{supplier_id}}">
+        <td>
+            <input type="hidden" name="category_id[]" value="@{{category_id}}">
+            @{{ category_name }}
+        </td>
+        <td>
+            <input type="hidden" name="product_id[]" value="@{{product_id}}">
+            @{{ product_name }}
+        </td>
+        <td>
+            <input type="number" min="1" class="form-control buying_qty text-right" name="buying_qty[]" value="">
+        </td>
+        <td>
+            <input type="number" class="form-control unit_price text-right" name="unit_price[]" value="">
+        </td>
+        <td>
+            <input type="text" class="form-control" name="description[]">
+        </td>
+        <td>
+            <input type="number" class="form-control buying_price text-right" name="buying_price[]" value="0" readonly>
+        </td>
+        <td>
+            <i class="btn btn-danger btn-sm fas fa-window-close removeeventmore"></i>
+        </td>
+    </tr>
+
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(document).on("click", ".addeventmore", function () {
+            var date = $('#date').val();
+            var purchase_no = $('#purchase_no').val();
+            var supplier_id = $('#supplier_id').val();
+            var category_id = $('#category_id').val();
+            var category_name = $('#category_id').find('option:selected').text();
+            var product_id = $('#product_id').val();
+            var product_name = $('#product_id').find('option:selected').text();
+            if (date === '') {
+                $.notify("Date is Required", {globalPosition: 'top right', className: 'error'});
+                return false;
+            }
+            if (purchase_no === '') {
+                $.notify("Purchase No is Required", {globalPosition: 'top right', className: 'error'});
+                return false;
+            }
+            if (supplier_id === '' || supplier_id === 'Select Supplier') {
+                $.notify("Supplier is Required", {globalPosition: 'top right', className: 'error'});
+                return false;
+            }
+            if (category_id === '' || category_id === 'Select Category') {
+                $.notify("Category is Required", {globalPosition: 'top right', className: 'error'});
+                return false;
+            }
+            if (product_id === '' || product_id === 'Select Product') {
+                $.notify("Product Field is Required", {globalPosition: 'top right', className: 'error'});
+                return false;
+            }
+            var source = $("#document-template").html();
+            var tamplate = Handlebars.compile(source);
+            var data = {
+                date: date,
+                purchase_no: purchase_no,
+                supplier_id: supplier_id,
+                category_id: category_id,
+                category_name: category_name,
+                product_id: product_id,
+                product_name: product_name
+            };
+            var html = tamplate(data);
+            $("#addRow").append(html);
+        });
+        $(document).on("click", ".removeeventmore", function (event) {
+            $(this).closest(".delete_add_more_item").remove();
+            totalAmountPrice();
+        });
+        $(document).on('keyup click', '.unit_price,.buying_qty', function () {
+            var unit_price = $(this).closest("tr").find("input.unit_price").val();
+            var qty = $(this).closest("tr").find("input.buying_qty").val();
+            var total = unit_price * qty;
+            $(this).closest("tr").find("input.buying_price").val(total);
+            totalAmountPrice();
+        });
+
+        // Calculate sum of amout in invoice
+        function totalAmountPrice() {
+            var sum = 0;
+            $(".buying_price").each(function () {
+                var value = $(this).val();
+                if (!isNaN(value) && value.length !== 0) {
+                    sum += parseFloat(value);
+                }
+            });
+            $('#estimated_amount').val(sum);
+        }
+    });
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        $(document).on('change', '#supplier_id', function () {
+            var supplier_id = $(this).val();
+            $.ajax({
+                url: "{{ route('backend.purchase.supplier.category.get') }}",
+                type: "GET",
+                data: {supplier_id: supplier_id},
+                success: function (data) {
+                    var html = '<option value="">Select Category</option>';
+                    $.each(data, function (key, v) {
+                        html += '<option value=" ' + v.category_id + ' "> ' + v.category.name + '</option>';
+                    });
+                    $('#category_id').html(html);
+                }
+            })
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(function () {
+        $(document).on('change', '#category_id', function () {
+            var category_id = $(this).val();
+            $.ajax({
+                url: "{{ route('backend.purchase.category.product.get') }}",
+                type: "GET",
+                data: {category_id: category_id},
+                success: function (data) {
+                    var html = '<option value="">Select Product</option>';
+                    $.each(data, function (key, v) {
+                        html += '<option value=" ' + v.id + ' "> ' + v.name + '</option>';
+                    });
+                    $('#product_id').html(html);
+                }
+            })
+        });
+    });
+</script>
 </body>
 
 </html>

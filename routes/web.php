@@ -99,14 +99,14 @@ Route::controller(ProductController::class)->prefix('backend/product')->group(fu
     Route::get('/edit/{id}', 'edit')->name('backend.product.edit');
     Route::post('/update', 'update')->name('backend.product.update');
     Route::get('/destroy/{id}', 'destroy')->name('backend.product.destroy');
-    Route::get('/getCategoryBySupplierId', 'getCategoryBySupplierId')->name('backend.product.supplier.category.get');
-    Route::get('/getProductByCategoryId', 'getProductByCategoryId')->name('backend.product.category.product.get');
-    Route::get('/getProductById', 'getProductById')->name('backend.product.get');
 });
 
 Route::controller(PurchaseController::class)->prefix('backend/purchase')->group(function () {
     Route::get('/index', 'index')->name('backend.purchase.index');
     Route::get('/create-form', 'createForm')->name('backend.purchase.create.form');
+    Route::get('/getCategoryBySupplierId', 'getCategoryBySupplierId')->name('backend.purchase.supplier.category.get');
+    Route::get('/getProductByCategoryId', 'getProductByCategoryId')->name('backend.purchase.category.product.get');
+    Route::get('/getProductById', 'getProductById')->name('backend.purchase.product.get');
     Route::post('/create', 'create')->name('backend.purchase.create');
     Route::get('/update-form/{id}', 'updateForm')->name('backend.purchase.update.form');
     Route::post('/update', 'update')->name('backend.purchase.update');

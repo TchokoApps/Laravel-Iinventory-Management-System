@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\PaymentDetail;
 use Illuminate\Database\Seeder;
 
 class PaymentDetailSeeder extends Seeder
@@ -13,6 +14,6 @@ class PaymentDetailSeeder extends Seeder
      */
     public function run()
     {
-        //
+        PaymentDetail::factory(10)->create();
     }
 }

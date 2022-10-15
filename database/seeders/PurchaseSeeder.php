@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Invoice;
-use Database\Factories\InvoiceFactory;
+use App\Models\Purchase;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class InvoiceTableSeeder extends Seeder
+class PurchaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +15,6 @@ class InvoiceTableSeeder extends Seeder
      */
     public function run()
     {
-        Invoice::factory(10)->create();
+        Purchase::factory(10)->create();
     }
 }

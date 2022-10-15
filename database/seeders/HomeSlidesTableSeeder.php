@@ -15,7 +15,6 @@ class HomeSlidesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('home_slides')->truncate();
         DB::table('home_slides')->insert(
             [
                 'title' => 'Où passer sa retraite en France ? Notre classement exclusif des villes où bien vieillir',

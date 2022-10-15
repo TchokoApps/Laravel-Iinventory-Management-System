@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Http\Controllers\Backend\PurchaseController;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,7 +22,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call([UsersTableSeeder::class, SuppliersTableSeeder::class, CustomersTableSeeder::class,
-            CategoriesTableSeeder::class, ProductsTableSeeder::class, UnitsTableSeeder::class,
+            CategoriesTableSeeder::class, UnitsTableSeeder::class, ProductsTableSeeder::class, PurchaseSeeder::class,
             HomeSlidesTableSeeder::class, InvoiceTableSeeder::class, InvoiceDetailSeeder::class, PaymentDetailSeeder::class, PaymentSeeder::class]);
     }
 }

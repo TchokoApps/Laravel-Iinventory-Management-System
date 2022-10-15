@@ -8,7 +8,6 @@ use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\Supplier;
 use App\Models\Unit;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -28,35 +27,34 @@ class PurchaseController extends Controller
         $categories = Category::all();
         $products = Product::all();
         return view('backend.purchase.create-form', compact('suppliers', 'units', 'categories', 'products'));
-
     }
 
     public function create(Request $request)
     {
-        if (!$request->supplier_id || !$request->category_id || !$request->product_id
-            || !$request->buying_qty || !$request->unit_price || !$request->buying_price) {
+        if (in_array(null, $request->supplier_id, true) || in_array(null, $request->category_id, true) || in_array(null, $request->product_id, true) ||
+            in_array(null, $request->buying_qty, true) || in_array(null, $request->unit_price, true)) {
 
             $notification = array(
-                'message' => 'Sorry you did not select Item',
+                'message' => 'Sorry you did not select Item or provide item',
                 'alert-type' => 'error'
             );
             return redirect()->back()->with($notification);
         } else {
             $count_category = count($request->category_id);
             for ($i = 0; $i < $count_category; $i++) {
-                $purchase = new Purchase();
-                $purchase->date = date('Y-m-d', strtotime($request->date[$i]));
-                $purchase->purchase_no = $request->purchase_no[$i];
-                $purchase->supplier_id = $request->supplier_id[$i];
-                $purchase->category_id = $request->category_id[$i];
-                $purchase->product_id = $request->product_id[$i];
-                $purchase->buying_qty = $request->buying_qty[$i];
-                $purchase->unit_price = $request->purchase_no[$i];
-                $purchase->buying_price = $request->buying_price[$i];
-                $purchase->description = $request->description[$i];
-                $purchase->created_by = Auth::user()->id;
-                $purchase->status = '0';
-                $purchase->save();
+                Purchase::create([
+                    'date' => date('Y-m-d', strtotime($request->date[$i])),
+                    'purchase_no' => $request->purchase_no[$i],
+                    'supplier_id' => $request->supplier_id[$i],
+                    'category_id' => $request->category_id[$i],
+                    'product_id' => $request->product_id[$i],
+                    'buying_qty' => $request->buying_qty[$i],
+                    'unit_price' => $request->unit_price[$i],
+                    'buying_price' => $request->buying_price[$i],
+                    'description' => $request->description[$i],
+                    'created_by' => Auth::user()->id,
+                    'status' => 0,
+                ]);
             }
         }
 
@@ -68,17 +66,20 @@ class PurchaseController extends Controller
 
     }
 
-    public function edit($id)
+    public
+    function edit($id)
     {
 
     }
 
-    public function update(Request $request)
+    public
+    function update(Request $request)
     {
 
     }
 
-    public function destroy($id)
+    public
+    function destroy($id)
     {
         Purchase::findOrFail($id)->delete();
         $notification = array(
@@ -88,14 +89,16 @@ class PurchaseController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    public function getPending()
+    public
+    function getPending()
     {
         $purchases = Purchase::where('status', '0')->orderBy('date', 'desc')->orderBy('id', 'desc')->get();
         return view('backend.purchase.pending', compact('purchases'));
 
     }
 
-    public function approve($id)
+    public
+    function approve($id)
     {
         $purchase = Purchase::where(['id' => $id])->first();
         $product = Product::where(['id' => $purchase->product_id])->first();
@@ -107,5 +110,27 @@ class PurchaseController extends Controller
             'alert-type' => 'success'
         );
         return redirect()->route('backend.purchase.pending.get')->with($notification);
+    }
+
+    public
+    function getCategoryBySupplierId(Request $request)
+    {
+        $supplier_id = $request->supplier_id;
+        $cateogries = Product::select('category_id')->where('supplier_id', $supplier_id)->groupBy('category_id')->with('category')->get();
+        return response()->json($cateogries);
+    }
+
+    public
+    function getProductByCategoryId(Request $request)
+    {
+        $products = Product::where('category_id', $request->category_id)->get();
+        return response()->json($products);
+    }
+
+    public
+    function getProductById(Request $request)
+    {
+        $product = Product::where('id', $request->product_id)->first();
+        return response()->json($product->quantity);
     }
 }
