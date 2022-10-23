@@ -15,6 +15,6 @@ class UnitsTableSeeder extends Seeder
      */
     public function run()
     {
-        Unit::factory(5)->create();
+        Unit::factory(1)->create();
     }
 }

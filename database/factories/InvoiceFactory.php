@@ -19,7 +19,7 @@ class InvoiceFactory extends Factory
     public function definition()
     {
         return [
-            'invoice_no' => $this->faker->swiftBicNumber,
+            'invoice_no' => rand(),
             'date' => Carbon::now(),
             'description' => $this->faker->text,
             'status' => $this->faker->numberBetween(1, 2),

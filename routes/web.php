@@ -111,8 +111,6 @@ Route::controller(PurchaseController::class)->prefix('backend/purchase')->group(
     Route::get('/update-form/{id}', 'updateForm')->name('backend.purchase.update.form');
     Route::post('/update', 'update')->name('backend.purchase.update');
     Route::get('/destroy/{id}', 'destroy')->name('backend.purchase.destroy');
-    Route::get('/edit/{id}', 'edit')->name('backend.purchase.edit');
-    Route::post('/update', 'update')->name('backend.purchase.update');
     Route::get('/pending', 'getPending')->name('backend.purchase.pending.get');
     Route::get('/approve/{id}', 'approve')->name('backend.purchase.approve');
 });
@@ -121,6 +119,17 @@ Route::controller(InvoiceController::class)->prefix('backend/invoice')->group(fu
     Route::get('/index', 'index')->name('backend.invoice.index');
     Route::get('/create-form', 'createForm')->name('backend.invoice.create.form');
     Route::post('/create', 'create')->name('backend.invoice.create');
+    Route::get('/update-form/{id}', 'updateForm')->name('backend.invoice.update.form');
+    Route::post('/update', 'update')->name('backend.invoice.update');
+    Route::get('/destroy/{id}', 'destroy')->name('backend.invoice.destroy');
+    Route::get('/edit/{id}', 'edit')->name('backend.invoice.edit');
+    Route::post('/update', 'update')->name('backend.invoice.update');
+    Route::get('/getProductByCategoryId', 'getProductByCategoryId')->name('backend.invoice.category.product.get');
+    Route::get('/getProductQuantityById', 'getProductQuantityById')->name('backend.invoice.product.quantity.get');
+    Route::get('/pending', 'pending')->name('backend.invoice.pending');
+    Route::get('/destroy/{id}', 'destroy')->name('backend.invoice.destroy');
+    Route::get('/approve/{id}', 'approve')->name('backend.invoice.approve');
+
 });
 
 Route::get('reset', function () {

@@ -153,7 +153,7 @@
                         <li><a href="{{ route('backend.invoice.create.form') }}">Add Invoices</a></li>
                     </ul>
                     <ul class="sub-menu" aria-expanded="false">
-                        <li><a href="{{ route('backend.purchase.pending.get') }}">Approval Invoce</a></li>
+                        <li><a href="{{ route('backend.invoice.pending') }}">Approval Invoce</a></li>
                     </ul>
                 </li>
 
